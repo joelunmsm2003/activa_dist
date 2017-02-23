@@ -54,32 +54,38 @@
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Ingrese Datos</h4>
+	        <h4 class="modal-title">INGRESE DNI </h4>
 	      </div>
+
+	      
 	      <div class="modal-body">
 	       	
 
 	       		<div class="form-group">
-					<label for="nombre">DNI</label>
+					<div class='col-md-3'>
 					<input required type="text" class="form-control" ng-change='searchdni(dni)' ng-model='dni'  id="nombre">
+					</div>
 				</div>
 
+				<h5 ng-if ='resultadodni.NOMBRE'>DATOS</h5>
+				<h5 ng-if ='resultadodni.NOMBRE'> {{resultadodni.NOMBRE}}</h5>
 
 
+			<h5 ng-if='registros'>LLAMADAS</h5>
 			<ul class="list-group" >
 			  
 			  <li ng-click='go(x)' class="list-group-item" ng-repeat="x in registros">
 
 			  <div class='row'>
-			  <div class='col-md-2'>
-			  {{x.telefono}} 
+			  <div class='col-md-3'>
+			  <i class="fa fa-phone-square" aria-hidden="true"></i> {{x.telefono}} 
 			  </div>
 
 			  <div class='col-md-3'>
 			   {{x.contacto}}  
 			  </div>
 
-			  <div class='col-md-2'>
+			  <div class='col-md-3'>
 			  {{x.accion}}   
 			  </div>
 

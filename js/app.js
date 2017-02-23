@@ -238,9 +238,8 @@ function HomeController($scope,$location,$http){
 
         }).success(function(res){
 
-            $scope.agente = res
-
-            console.log('Home',$scope.agente)
+            $scope.agente = res[0]
+        
 
         })
 
@@ -259,7 +258,7 @@ function HomeController($scope,$location,$http){
 
             $scope.agentereal = res[0]
 
-            console.log('Sgente real',$scope.agentereal)
+            
 
         })
 
@@ -268,6 +267,25 @@ function HomeController($scope,$location,$http){
 
 
                 console.log('dni....',data)
+
+                var formData = { dni: dni };
+
+                var postData = 'myData='+JSON.stringify(formData);
+
+
+                $http({
+
+                method : 'POST',
+                url : host+'/gestion.php',
+                data: postData,
+                headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
+
+                }).success(function(res){
+
+                $scope.resultadodni = res[0]
+
+
+                })
 
 
                 var formData = { dni: data };
@@ -391,6 +409,17 @@ function TipificacionController($scope,$location,$http,$log){
 
     console.log('base..',$scope.base)
 
+
+        $http.get(host+"/contacto.php/").success(function(data) {
+
+        $scope.contacto = data
+
+        });
+
+
+
+
+
     var formData = { base: $scope.base };
 
     var postData = 'myData='+JSON.stringify(formData);
@@ -405,13 +434,26 @@ function TipificacionController($scope,$location,$http,$log){
     }).success(function(res){
 
 
-      console.log('Resultado..',res)
+            $scope.baseresult = res[0]
+
+            $http.get(host+"/contacto.php/").success(function(data) {
+
+                  $scope.contacto = data
+
+                
+      
+                
+            });
 
 
-      $scope.baseresult = res[0]
 
-    
+ 
+      
 
+ 
+
+            // console.log('contacto',$scope.baseresult.contacto)
+  
     })
 
 
@@ -498,15 +540,7 @@ function TipificacionController($scope,$location,$http,$log){
 
 
 
-          $http.get(host+"/contacto.php/").success(function(data) {
-
-            console.log('contacto',data)
-
-            $scope.contacto = data
-
-          });
-
-
+      
 
         $scope.traeestados =function(data){
 
@@ -530,6 +564,10 @@ function TipificacionController($scope,$location,$http,$log){
                           $scope.estados = res
 
                           console.log('accion',res)
+
+                            
+
+                      
 
                       })
 

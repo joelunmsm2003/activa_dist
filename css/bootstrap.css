@@ -5756,6 +5756,15 @@ button.close {
   margin-right: 16px;
   padding: 8px; }
 
+.telefono {
+  background-color: #ffffff;
+  padding: 6px;
+  color: #2969a8;
+  margin-right: 2px;
+  height: 30px;
+  width: 21px;
+  border: 1px solid #2969a8; }
+
 .informe {
   padding: 7em; }
 
@@ -5789,3 +5798,6 @@ button.close {
 .list-group-item:hover {
   background: #2969a8;
   color: #fff; }
+
+ul, ol {
+  font-size: 12px; }

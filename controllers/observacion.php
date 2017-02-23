@@ -7,7 +7,7 @@ $observacion = json_encode($myData->observacion);
 
 $base = json_encode($myData->base);
 
-$query = "UPDATE orig_base SET observacion = '$observacion' WHERE  id_orig_base = $base ";
+$query = "UPDATE orig_base SET observacion = $observacion WHERE  id_orig_base = $base ";
 
 $fp = fopen("/home/gestion.log","a");
 
