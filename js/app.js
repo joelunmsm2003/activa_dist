@@ -10,11 +10,6 @@ function UserService ($http,$q,$log,$localStorage) {
 
 
 
-
-
-
-
-
 }
 
 
@@ -262,6 +257,15 @@ function HomeController($scope,$location,$http){
 
         })
 
+        $scope.goperson =function(data){
+
+
+            window.location.href='http://192.168.40.4/calidad/#/home?dni='+data+'&'+'base=123'
+
+            location.reload()
+
+        }
+
 
         $scope.searchdni =function(data){
 
@@ -399,9 +403,9 @@ function TipificacionController($scope,$location,$http,$log){
 
           // Saca de la URL solo el DNI
 
-          $scope.pasabase = this.pasabase
+    $scope.pasabase = this.pasabase
 
-          console.log('Tipificando.......',this.pasabase)
+    console.log('Tipificando.......',this.pasabase)
 
     url = $location.url()
 
@@ -409,12 +413,11 @@ function TipificacionController($scope,$location,$http,$log){
 
     console.log('base..',$scope.base)
 
+    $http.get(host+"/contacto.php/").success(function(data) {
 
-        $http.get(host+"/contacto.php/").success(function(data) {
+    $scope.contacto = data
 
-        $scope.contacto = data
-
-        });
+    });
 
 
 
