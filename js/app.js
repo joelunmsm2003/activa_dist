@@ -38,7 +38,7 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider,$htt
 		});
 
 
-	host = 'http://localhost/calidad/controllers'
+	host = 'http://192.168.40.4/calidad/controllers'
 
 	//$locationProvider.html5Mode(true);
 
@@ -206,7 +206,7 @@ angular
 function HomeController($scope,$location,$http){
 
 
-        console.log('Tipi...')
+        console.log('URL...',$location.url())
 
 		url = $location.url()
 
@@ -215,6 +215,32 @@ function HomeController($scope,$location,$http){
 		dni = url.split('&')[0].split('=')[1]
 
         $scope.base = url.split('&')[1].split('=')[1]
+
+        $scope.agente = url.split('&')[2].split('=')[1]
+
+        $scope.nomagente = url.split('&')[3].split('=')[1]
+
+        console.log('Request.......',dni,$scope.base,$scope.agente,$scope.nomagente)
+
+
+        var formData = { agente: $scope.agente ,base:$scope.base,nomagente:$scope.nomagente};
+
+        var postData = 'myData='+JSON.stringify(formData);
+
+
+        $http({
+
+        method : 'POST',
+        url : host+'/agentesave.php',
+        data: postData,
+        headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
+
+        }).success(function(res){
+
+            
+        
+
+        })
 
 
 
@@ -326,7 +352,10 @@ function HomeController($scope,$location,$http){
                
 
                
-            window.location.href='http://localhost/calidad/#/home?dni='+data.cliente+'&'+'base='+data.id_orig_base
+            //window.location.href='http://192.168.40.4/calidad/#/home?dni='+data.cliente+'&'+'base='+data.id_orig_base+'&agente=17402130&nomagente=DeisyH'
+
+            window.location.href='http://192.168.40.4/calidad/#/home?dni='+data.cliente+'&'+'base='+data.id_orig_base+'&agente='+$scope.agente+'&nomagente='+$scope.nomagente
+
 
             location.reload()
         }
